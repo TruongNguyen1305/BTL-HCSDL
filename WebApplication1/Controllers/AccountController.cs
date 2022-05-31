@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using WebApplication1.Models;
+using System.Data.SqlClient;
+
+namespace WebApplication1.Controllers
+{
+    public class AccountController : Controller
+    {
+        SqlConnection con = new SqlConnection();
+        SqlCommand com = new SqlCommand();
+        SqlDataReader dr;
+        static public string errorMess = "";
+        static public bool isSuccess = false;
+        static public string AccountName = "";
+        // GET: Account
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View("Register");
+        }
+        void connectionString()
+        {
+            con.ConnectionString = "data source=LAPTOP-J9OI3DHT\\TRUONGCRIS; database=GIAOHANG; integrated security = SSPI;";
+        }
+        [HttpPost]
+        public ActionResult Verify(Account acc)
+        {
+            connectionString();
+            con.Open();
+            com.Connection = con;
+            com.CommandText = "select username, MatKhau from TaiKhoan where username = '"+acc.UserName+"' and MatKhau = '"+acc.Password+"'";
+            dr = com.ExecuteReader();
+            if (dr.Read())
+            {
+                con.Close();
+                AccountName = acc.UserName;
+                Response.Redirect("/Main/CreateOrder");
+                return View("~/Views/Main/CreateOrder.cshtml");
+            }
+            else
+            {
+                con.Close();
+                errorMess = "Tên đăng nhập hoặc mật khẩu không đúng.";
+                return View("Login");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CheckAccount(Account acc)
+        {
+            connectionString();
+            con.Open();
+            com.Connection = con;
+            com.CommandText = "select username from TaiKhoan where username = '"+acc.UserName+"'";
+            dr = com.ExecuteReader();
+            if (dr.Read())
+            {
+                errorMess = "Tên đăng nhập trùng với tài khoản khác.";
+            }
+            else
+            {
+                dr.Close();
+                try
+                {
+                    com.CommandText = "InsertTaiKhoan N'"+acc.HoTen+"', N'"+acc.DiaChi+"', '"+acc.UserName+"', '"+acc.Password+"', '"+acc.Phone+ "', '"+acc.Email+ "', '"+acc.Birthday+"'";
+                    com.ExecuteReader();
+                    isSuccess = true;
+                }
+                catch(SqlException ex)
+                {
+                    errorMess = ex.Message;
+                }
+            }
+            con.Close();
+            return View("Register");
+        }
+    }
+}

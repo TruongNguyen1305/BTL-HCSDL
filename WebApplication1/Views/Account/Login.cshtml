@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+@using WebApplication1.Controllers
+<div class="main">
+
+    <form action="Verify" method="POST" class="form" id="form-login">
+        <h3 class="heading">Đăng nhập</h3>
+        <p class="desc">Nhóm xe ôm ❤️</p>
+
+        <div class="spacer"></div>
+
+        <div class="form-group">
+            <label for="UserName" class="form-label">Tên đăng Nhập</label>
+            <input id="UserName" name="UserName" rules="required" type="text" placeholder="VD: Đăng Trường" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <input id="password" name="Password" rules="required|min:6" type="password" placeholder="Nhập mật khẩu" class="form-control">
+            <span class="form-message"></span>
+        </div>
+        <input type="submit" value="LOGIN">
+        @if (AccountController.errorMess.Length > 0)
+        {
+            <div class="spacer"></div>
+            <span style="color: #f33a58;">@AccountController.errorMess</span>
+            AccountController.errorMess = "";
+        }
+        <span style="display: block; font-size: 1.2rem; height: 50px; padding: 12px 0;">Chưa có tài khoản. Đăng kí @Html.ActionLink("tại đây", "Register", "Account")</span>
+    </form>
+
+</div>
+
+

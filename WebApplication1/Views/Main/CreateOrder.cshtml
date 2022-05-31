@@ -1,0 +1,86 @@
+﻿@model WebApplication1.Models.DonVanChuyen
+@using WebApplication1.Controllers
+@{
+    ViewBag.Title = "CreateOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+
+    <form action="CheckOrder" method="POST" class="row" id="form-Order">
+        <h2 class="modal-header">Nhập thông tin đơn vận chuyển</h2>
+        <div class="form-group">
+            <label for="SDTGiao">Số điện thoại khách hàng</label>
+            <input id="SDTGiao" name="SDTGiao" rules="required" type="text" placeholder="VD: 0123456789" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="DCGiao">Địa chỉ giao</label>
+            <input id="DCGiao" name="DCGiao" rules="required" type="text" placeholder="Nhập địa chỉ" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="DCNhan">Địa chỉ nhận</label>
+            <input id="DCNhan" name="DCNhan" rules="required" type="text" placeholder="Nhập địa chỉ" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="TenNguoiNhan">Tên người nhận</label>
+            <input id="TenNguoiNhan" name="TenNguoiNhan" rules="required" type="text" placeholder="Nhập tên" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="SDTNhan">Số điện thoại người nhận</label>
+            <input id="SDTNhan" name="SDTNhan" rules="required" type="text" placeholder="VD: 0123456789" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="TGGui">Thời gian gửi</label>
+            <input id="TGGui" name="TGGui" rules="required" type="date" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="TGNhan">Thời gian nhận</label>
+            <input id="TGNhan" name="TGNhan" rules="required" type="date" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="KichCo">Kích cỡ</label>
+            <input id="KichCo" name="KichCo" rules="required" type="text" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="KhoiLuong">Khối lượng (Kg)</label>
+            <input id="KhoiLuong" rules="required" type="text" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="LoaiHang">Loại hàng</label>
+            <input id="LoaiHang" name="LoaiHang" rules="required" type="text" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="PTGui">Phương thức gửi</label>
+            <select name="PTGui" id="PTGui" class="form-control">
+                <option value="TaiKho">Tại kho</option>
+                <option value="TaiNha">Tại nhà</option>
+            </select>
+            <span class="form-message"></span>
+        </div>
+
+        <input class="btn-success" type="submit" value="TẠO ĐƠN">
+
+    </form>
+
+</div>
+
+
