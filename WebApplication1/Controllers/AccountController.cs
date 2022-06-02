@@ -16,6 +16,7 @@ namespace WebApplication1.Controllers
         static public string errorMess = "";
         static public bool isSuccess = false;
         static public string AccountName = "";
+        static public string MaKH = "";
         // GET: Account
         [HttpGet]
         public ActionResult Login()
@@ -41,8 +42,16 @@ namespace WebApplication1.Controllers
             dr = com.ExecuteReader();
             if (dr.Read())
             {
+                AccountName = acc.UserName; 
+                dr.Close();
+                com.CommandText = "select TK_MaKH from TaiKhoan where username = '" + acc.UserName + "'"; //Lay Ma KH tuong ung vs username
+                dr = com.ExecuteReader();
+                if (dr.Read())
+                {
+                    MaKH = dr[0].ToString();
+                }
+                dr.Close();
                 con.Close();
-                AccountName = acc.UserName;
                 Response.Redirect("/Main/CreateOrder");
                 return View("~/Views/Main/CreateOrder.cshtml");
             }

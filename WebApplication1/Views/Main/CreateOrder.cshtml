@@ -9,76 +9,74 @@
     <form action="CheckOrder" method="POST" class="row" id="form-Order">
         <h2 class="modal-header">Nhập thông tin đơn vận chuyển</h2>
         <div class="form-group">
-            <label for="SDTGiao">Số điện thoại khách hàng</label>
-            <input id="SDTGiao" name="SDTGiao" rules="required" type="text" placeholder="VD: 0123456789" class="form-control">
-            <span class="form-message"></span>
-        </div>
-
-        <div class="form-group">
-            <label for="DCGiao">Địa chỉ giao</label>
-            <input id="DCGiao" name="DCGiao" rules="required" type="text" placeholder="Nhập địa chỉ" class="form-control">
-            <span class="form-message"></span>
-        </div>
-
-        <div class="form-group">
-            <label for="DCNhan">Địa chỉ nhận</label>
-            <input id="DCNhan" name="DCNhan" rules="required" type="text" placeholder="Nhập địa chỉ" class="form-control">
-            <span class="form-message"></span>
-        </div>
-
-        <div class="form-group">
             <label for="TenNguoiNhan">Tên người nhận</label>
-            <input id="TenNguoiNhan" name="TenNguoiNhan" rules="required" type="text" placeholder="Nhập tên" class="form-control">
-            <span class="form-message"></span>
+            <input id="TenNguoiNhan" name="TenNguoiNhan" type="text" placeholder="Nhập tên" class="form-control" required>
         </div>
 
         <div class="form-group">
             <label for="SDTNhan">Số điện thoại người nhận</label>
-            <input id="SDTNhan" name="SDTNhan" rules="required" type="text" placeholder="VD: 0123456789" class="form-control">
-            <span class="form-message"></span>
+            <input id="SDTNhan" name="SDTNhan" type="text" placeholder="VD: 0123456789" class="form-control" required>
         </div>
 
         <div class="form-group">
-            <label for="TGGui">Thời gian gửi</label>
-            <input id="TGGui" name="TGGui" rules="required" type="date" class="form-control">
-            <span class="form-message"></span>
+            <label for="DCNhan">Địa chỉ nhận</label>
+            <input id="DCNhan" name="DCNhan" type="text" placeholder="Nhập địa chỉ" class="form-control" required>
         </div>
 
         <div class="form-group">
-            <label for="TGNhan">Thời gian nhận</label>
-            <input id="TGNhan" name="TGNhan" rules="required" type="date" class="form-control">
-            <span class="form-message"></span>
-        </div>
-
-        <div class="form-group">
-            <label for="KichCo">Kích cỡ</label>
-            <input id="KichCo" name="KichCo" rules="required" type="text" class="form-control">
-            <span class="form-message"></span>
+            <label for="KhoangCach">Khoảng cách</label>
+            <input id="KhoangCach" name="KhoangCach" type="text" class="form-control" required>
         </div>
 
         <div class="form-group">
             <label for="KhoiLuong">Khối lượng (Kg)</label>
-            <input id="KhoiLuong" rules="required" type="text" class="form-control">
-            <span class="form-message"></span>
+            <input id="KhoiLuong" name="KhoiLuong" type="text" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="TienThuHo">Tiền thu hộ</label>
+            <input id="TienThuHo" name="TienThuHo" type="text" class="form-control" required>
         </div>
 
         <div class="form-group">
             <label for="LoaiHang">Loại hàng</label>
-            <input id="LoaiHang" name="LoaiHang" rules="required" type="text" class="form-control">
-            <span class="form-message"></span>
+            <select name="LoaiHang" id="LoaiHang" class="form-control">
+                <option value="Hàng thông thường">Hàng thông thường</option>
+                <option value="Hàng dễ vỡ">Hàng dễ vỡ</option>
+            </select>
         </div>
 
         <div class="form-group">
             <label for="PTGui">Phương thức gửi</label>
             <select name="PTGui" id="PTGui" class="form-control">
-                <option value="TaiKho">Tại kho</option>
-                <option value="TaiNha">Tại nhà</option>
+                <option value=true>Gửi tại nhà</option>
+                <option value=false>Đem đến kho</option>
             </select>
-            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="PTNhan">Phương thức nhận</label>
+            <select name="PTNhan" id="PTGui" class="form-control">
+                <option value=true>Nhận tại nhà</option>
+                <option value=false>Nhận tại kho</option>
+            </select>
         </div>
 
         <input class="btn-success" type="submit" value="TẠO ĐƠN">
-
+        @{
+            if (MainController.errorMess.Length > 0)
+            {
+                <div class="spacer"></div>
+                <span style="color: #f33a58;">@MainController.errorMess</span>
+                MainController.errorMess = "";
+            }
+            if(MainController.isSuccess)
+            {
+                <div class="spacer"></div>
+                <span style="color: #1dbfaf;">Tạo đơn thành công</span>
+                MainController.isSuccess = false;
+            }
+        }
     </form>
 
 </div>
