@@ -30,7 +30,7 @@ namespace WebApplication1.Controllers
             connectionString();
             con.Open();
             com.Connection = con;
-            com.CommandText = $"InsertDonVanChuyen N'"+don.TenNguoiNhan+"', '"+don.SDTNhan+"', N'"+don.DCNhan+"', "+don.PTNhan+", '"+AccountController.MaKH+"', "+don.PTGui+", "+don.TienThuHo+", "+don.KhoiLuong+", "+don.KhoangCach+", N'"+don.LoaiHang+"'";
+            com.CommandText = $"InsertDonVanChuyen N'"+don.TenNguoiNhan+"', '"+don.SDTNhan+"', N'"+don.DCNhan+"', "+don.PTNhan+", '"+Session["MaKH"]+"', "+don.PTGui+", "+don.TienThuHo+", "+don.KhoiLuong+", "+don.KhoangCach+", N'"+don.LoaiHang+"'";
             try
             {
                 com.ExecuteReader();

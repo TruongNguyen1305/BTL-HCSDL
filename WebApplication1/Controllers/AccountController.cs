@@ -15,13 +15,20 @@ namespace WebApplication1.Controllers
         SqlDataReader dr;
         static public string errorMess = "";
         static public bool isSuccess = false;
-        static public string AccountName = "";
-        static public string MaKH = "";
         // GET: Account
         [HttpGet]
         public ActionResult Login()
         {
             return View("Login");
+        }
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            if (Session["Username"] != null)
+            {
+                Session.Clear();
+            }
+            return Redirect("/");
         }
         [HttpGet]
         public ActionResult Register()
@@ -42,25 +49,21 @@ namespace WebApplication1.Controllers
             dr = com.ExecuteReader();
             if (dr.Read())
             {
-                AccountName = acc.UserName; 
+                Session["Username"] = acc.UserName; 
                 dr.Close();
                 com.CommandText = "select TK_MaKH from TaiKhoan where username = '" + acc.UserName + "'"; //Lay Ma KH tuong ung vs username
                 dr = com.ExecuteReader();
                 if (dr.Read())
                 {
-                    MaKH = dr[0].ToString();
+                    Session["MaKH"] = dr[0].ToString();
                 }
                 dr.Close();
                 con.Close();
                 Response.Redirect("/Main/CreateOrder");
-                return View("~/Views/Main/CreateOrder.cshtml");
             }
-            else
-            {
-                con.Close();
-                errorMess = "Tên đăng nhập hoặc mật khẩu không đúng.";
-                return View("Login");
-            }
+            con.Close();
+            errorMess = "Tên đăng nhập hoặc mật khẩu không đúng.";
+            return View("Login");
         }
 
         [HttpPost]
