@@ -4,81 +4,103 @@
     ViewBag.Title = "CreateOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
+@if (Session["Username"] != null)
+{
+    <div>
 
-    <form action="CheckOrder" method="POST" class="row" id="form-Order">
-        <h2 class="modal-header">Nhập thông tin đơn vận chuyển</h2>
-        <div class="form-group">
-            <label for="TenNguoiNhan">Tên người nhận</label>
-            <input id="TenNguoiNhan" name="TenNguoiNhan" type="text" placeholder="Nhập tên" class="form-control" required>
-        </div>
+        <form action="CheckOrder" method="POST" class="row" id="form-Order">
+            <h2 class="modal-header">Nhập thông tin đơn vận chuyển</h2>
+            <div class="form-group">
+                <label for="TenNguoiNhan">Tên người nhận</label>
+                <input id="TenNguoiNhan" name="TenNguoiNhan" type="text" placeholder="Nhập tên" class="form-control" required>
+            </div>
 
-        <div class="form-group">
-            <label for="SDTNhan">Số điện thoại người nhận</label>
-            <input id="SDTNhan" name="SDTNhan" type="text" placeholder="VD: 0123456789" class="form-control" required>
-        </div>
+            <div class="form-group">
+                <label for="SDTNhan">Số điện thoại người nhận</label>
+                <input id="SDTNhan" name="SDTNhan" type="text" placeholder="VD: 0123456789" class="form-control" required>
+            </div>
 
-        <div class="form-group">
-            <label for="DCNhan">Địa chỉ nhận</label>
-            <input id="DCNhan" name="DCNhan" type="text" placeholder="Nhập địa chỉ" class="form-control" required>
-        </div>
+            <div class="form-group">
+                <label for="DCNhan">Địa chỉ nhận</label>
+                <input id="DCNhan" name="DCNhan" type="text" placeholder="Nhập địa chỉ" class="form-control" required>
+            </div>
 
-        <div class="form-group">
-            <label for="KhoangCach">Khoảng cách</label>
-            <input id="KhoangCach" name="KhoangCach" type="text" class="form-control" required>
-        </div>
+            <div class="form-group">
+                <label for="KhoangCach">Khoảng cách</label>
+                <input id="KhoangCach" name="KhoangCach" type="text" class="form-control" required>
+            </div>
 
-        <div class="form-group">
-            <label for="KhoiLuong">Khối lượng (Kg)</label>
-            <input id="KhoiLuong" name="KhoiLuong" type="text" class="form-control" required>
-        </div>
+            <div class="form-group">
+                <label for="KhoiLuong">Khối lượng (Kg)</label>
+                <input id="KhoiLuong" name="KhoiLuong" type="text" class="form-control" required>
+            </div>
 
-        <div class="form-group">
-            <label for="TienThuHo">Tiền thu hộ</label>
-            <input id="TienThuHo" name="TienThuHo" type="text" class="form-control" required>
-        </div>
+            <div class="form-group">
+                <label for="TienThuHo">Tiền thu hộ</label>
+                <input id="TienThuHo" name="TienThuHo" type="text" class="form-control" required>
+            </div>
 
-        <div class="form-group">
-            <label for="LoaiHang">Loại hàng</label>
-            <select name="LoaiHang" id="LoaiHang" class="form-control">
-                <option value="Hàng thông thường">Hàng thông thường</option>
-                <option value="Hàng dễ vỡ">Hàng dễ vỡ</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="LoaiHang">Loại hàng</label>
+                <select name="LoaiHang" id="LoaiHang" class="form-control">
+                    <option value="Hàng thông thường">Hàng thông thường</option>
+                    <option value="Hàng dễ vỡ">Hàng dễ vỡ</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="PTGui">Phương thức gửi</label>
-            <select name="PTGui" id="PTGui" class="form-control">
-                <option value=true>Gửi tại nhà</option>
-                <option value=false>Đem đến kho</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="PTGui">Phương thức gửi</label>
+                <select name="PTGui" id="PTGui" class="form-control">
+                    <option value=true>Gửi tại nhà</option>
+                    <option value=false>Đem đến kho</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="PTNhan">Phương thức nhận</label>
-            <select name="PTNhan" id="PTGui" class="form-control">
-                <option value=true>Nhận tại nhà</option>
-                <option value=false>Nhận tại kho</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="PTNhan">Phương thức nhận</label>
+                <select name="PTNhan" id="PTNhan" class="form-control">
+                    <option value=true>Nhận tại nhà</option>
+                    <option value=false>Nhận tại kho</option>
+                </select>
+            </div>
 
-        <input class="btn-success" type="submit" value="TẠO ĐƠN">
-        @{
-            if (MainController.errorMess.Length > 0)
-            {
-                <div class="spacer"></div>
-                <span style="color: #f33a58;">@MainController.errorMess</span>
-                MainController.errorMess = "";
+            <input class="btn-success" type="submit" value="TẠO ĐƠN">
+            @{
+                if (MainController.errorMess.Length > 0)
+                {
+                    <div class="spacer"></div>
+                    <span style="color: #f33a58;">@MainController.errorMess</span>
+                    MainController.errorMess = "";
+                }
+                if (MainController.isSuccess)
+                {
+                    <div class="spacer"></div>
+                    <span style="color: #f33a58;">Tạo đơn thành công</span>
+                    MainController.isSuccess = false;
+                }
             }
-            if(MainController.isSuccess)
-            {
-                <div class="spacer"></div>
-                <span style="color: #1dbfaf;">Tạo đơn thành công</span>
-                MainController.isSuccess = false;
-            }
-        }
-    </form>
+        </form>
 
-</div>
+    </div>
+}
+else
+{
+    <section style="margin-top: 150px" id="home">
+        <div class="bg-primary" style="background-image: url(~/Image/hero-header-bg.png); background-position: top center; background-size: cover; ">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 col-sm-12 text-center"><img class="img-responsive" src="~/Image/hero.png" alt="hero-header" /></div>
+                <div class="col-lg-4 col-md-2 col-sm-12 text-center">
+                    <h1 class="">A trusted provider of </h1>
+                    <h1 class="">delivery services.</h1>
+                    <p class="">We deliver your products safely to <br />your home in a reasonable time. </p><a class="btn btn-lg btn-danger" href="/Account/Login" role="button">Get started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+}
 
 

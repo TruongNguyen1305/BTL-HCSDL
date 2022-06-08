@@ -150,6 +150,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Image\defaultUser.jpg" />
+    <Content Include="Image\hero-header-bg.png" />
+    <Content Include="Image\hero.png" />
     <Content Include="Js\validator2.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -183,6 +185,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\_LayoutPage2.cshtml" />
     <Content Include="Views\Main\CreateOrder.cshtml" />
+    <Content Include="Views\Main\ListOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

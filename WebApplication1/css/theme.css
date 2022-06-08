@@ -1,0 +1,96 @@
+.bg-holder {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    will-change: transform, opacity, filter;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.bg-holder.bg-right {
+    left: auto;
+    right: 0;
+}
+
+.bg-holder.overlay:before {
+    position: absolute;
+    content: "";
+    background: rgba(0, 0, 0, 0.25);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bg-holder.overlay-0:before {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.bg-holder.overlay-1:before {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.bg-holder.overlay-2:before {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.bg-holder.overlay-light:before {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.bg-holder .bg-video {
+    position: absolute;
+    display: block;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    height: 100%;
+    min-width: 100%;
+}
+
+.bg-holder .bg-youtube {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.bg-primary-gradient {
+    background: -o-linear-gradient(241.82deg, #51B4F7 9.05%, #5A98F2 76.74%);
+    background: linear-gradient(208.18deg, #51B4F7 9.05%, #5A98F2 76.74%);
+}
+
+.bg-dark-gradient {
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(10, 9, 13, 0.8)), to(rgba(10, 9, 13, 0.8)));
+    background: -o-linear-gradient(bottom, rgba(10, 9, 13, 0.8), rgba(10, 9, 13, 0.8));
+    background: linear-gradient(0deg, rgba(10, 9, 13, 0.8), rgba(10, 9, 13, 0.8));
+}
+
+.bg-light-gradient {
+    background: -o-linear-gradient(269deg, rgba(113, 110, 110, 0) 35%, rgba(30, 45, 70, 0.93) 94.07%);
+    background: linear-gradient(181deg, rgba(113, 110, 110, 0) 35%, rgba(30, 45, 70, 0.93) 94.07%);
+}
+
+.bg-offcanvas {
+    position: relative;
+}
+
+.bg-offcanvas::before {
+    position: absolute;
+    background: #C5C5D2;
+    content: "";
+    height: 100%;
+    width: 1000%;
+    margin-left: -1000%;
+    margin-right: -1000%;
+}

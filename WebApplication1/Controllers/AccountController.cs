@@ -59,7 +59,7 @@ namespace WebApplication1.Controllers
                 }
                 dr.Close();
                 con.Close();
-                Response.Redirect("/Main/CreateOrder");
+                return Redirect("/Main/CreateOrder");
             }
             con.Close();
             errorMess = "Tên đăng nhập hoặc mật khẩu không đúng.";
@@ -84,7 +84,7 @@ namespace WebApplication1.Controllers
                 try
                 {
                     com.CommandText = "InsertTaiKhoan N'"+acc.HoTen+"', N'"+acc.DiaChi+"', '"+acc.UserName+"', '"+acc.Password+"', '"+acc.Phone+ "', '"+acc.Email+ "', '"+acc.Birthday+"'";
-                    com.ExecuteReader();
+                    com.ExecuteNonQuery();
                     isSuccess = true;
                 }
                 catch(SqlException ex)

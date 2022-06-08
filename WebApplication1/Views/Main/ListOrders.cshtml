@@ -1,0 +1,114 @@
+﻿@using WebApplication1.Models;
+@model DonVanChuyen
+@{
+    ViewBag.Title = "ListOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Filter", "Main", FormMethod.Post))
+{
+    <header class="modal-header">Lọc đơn hàng</header>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Thời gian tạo đơn</th>
+                <th>Phương thức nhận</th>
+                <th>Loại hàng</th>
+            </tr>
+        </thead>
+        <tbody id="childtable">
+            <tr>
+                <th>@Html.TextBoxFor(m => m.TGTaoDon, new {@type = "date", @class = "form-control" })</th>
+                <th>
+                    <select name="PTNhan" class="form-control">
+                        <option value=null>Tất cả</option>
+                        <option value=true>Nhận tại nhà</option>
+                        <option value=false>Nhận tại kho</option>
+                    </select>
+                </th>
+                <th>
+                    <select name="LoaiHang" class="form-control">
+                        <option value="">Tất cả</option>
+                        <option value="Hàng thông thường">Hàng thông thường</option>
+                        <option value="Hàng dễ vỡ">Hàng dễ vỡ</option>
+                    </select>
+                </th>
+                <th><input style="margin-top:0;" class="btn btn-danger btn-sm" type="submit" value="Filter"></th>
+            </tr>
+        </tbody>
+    </table>
+}
+@using (Html.BeginForm("UpdateOrder", "Main", FormMethod.Post))
+{
+    <header class="modal-header">Cập nhập đơn hàng</header>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã đơn cần update</th>
+                <th>Tên người nhận</th>
+                <th>SDT người nhận</th>
+                <th>Địa chỉ nhận</th>
+                <th>Tiền thu hộ</th>
+                <th>Phương thức nhận</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="childtable">
+            <tr>
+                <th>@Html.TextBoxFor(m => m.MaDon, new { @class = "form-control" })</th>
+                <th>@Html.TextBoxFor(m => m.TenNguoiNhan, new { @class = "form-control" })</th>
+                <th>@Html.TextBoxFor(m => m.SDTNhan, new { @class = "form-control" })</th>
+                <th>@Html.TextBoxFor(m => m.DCNhan, new { @class = "form-control" })</th>
+                <th>@Html.TextBoxFor(m => m.TienThuHo, new { @class = "form-control" })</th>
+                <th>
+                    <select name="PTNhan" class="form-control">
+                        <option value=true>Nhận tại nhà</option>
+                        <option value=false>Nhận tại kho</option>
+                    </select>
+                </th>
+                <th><input style="margin-top:0;" class="btn btn-danger btn-sm" type="submit" value="Update"></th>
+            </tr>
+        </tbody>
+    </table>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã đơn</th>
+            <th>Tên người nhận</th>
+            <th>SDT người nhận</th>
+            <th>Địa chỉ nhận</th>
+            <th>Khoảng cách</th>
+            <th>Khối lượng</th>
+            <th>Tiền thu hộ</th>
+            <th>Loại hàng</th>
+            @*<th>Phương thức gửi</th>*@
+            <th>Phương thức nhận</th>
+            <th>Phí vận chuyển</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var don in (List<DonVanChuyen>)Session["List"])
+        {
+            <tr>
+                <th>@don.MaDon</th>
+                <th>@don.TenNguoiNhan</th>
+                <th>@don.SDTNhan</th>
+                <th>@don.DCNhan</th>
+                <th>@don.KhoangCach</th>
+                <th>@don.KhoiLuong</th>
+                <th>@don.TienThuHo</th>
+                <th>@don.LoaiHang</th>
+                @*<th>@{don.PTGui ? "Gửi tại nhà" : "Đem đến kho"}</th>*@
+                <th>@{var PTNhan = don.PTNhan == true ? "Nhận tại nhà" : "Nhận tại kho";@PTNhan}</th>
+                <th>@don.PhiVanChuyen</th>
+                <th>
+                    @Html.ActionLink("Xóa", "DeleteOrder", "Main", new { MaDon = don.MaDon }, new { @class = "btn btn-danger btn-sm" })
+                </th>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

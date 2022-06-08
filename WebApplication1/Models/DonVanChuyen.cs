@@ -16,6 +16,8 @@ namespace WebApplication1.Models
         public int TienThuHo { get; set; }
         public string LoaiHang { get; set; }
         public bool PTGui { get; set; }
-        public bool PTNhan { get; set; }
+        public bool? PTNhan { get; set; }
+        public int PhiVanChuyen { get; set; }
+        public string TGTaoDon { get; set; }
     }
 }

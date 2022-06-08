@@ -10,10 +10,11 @@
     <link href="~/css/all.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
     @*<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKe_Q5PpmeEoz2ROzCUuWqmbMwQgRQbNw&callback=initMap"></script>*@
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="border-bottom: none">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,9 +25,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if (Session["Username"]!=null)
+                    @if (Session["Username"] != null)
                     {
                         <li><a href="/Main/CreateOrder">Hello @Session["Username"]</a></li>
+                        <li><a href="/Main/ListOrders">Đơn của tui</a></li>
                         <li><a href="/Account/Logout">Đăng xuất</a></li>
                     }
                     else
