@@ -149,3 +149,16 @@ function Validator(formSelector){
         }
     }
 }
+
+function CalculatePrice(e) {
+    var Price = document.getElementById('Price');
+    var currentTotalPrice = parseInt(Price.innerHTML);
+    var input = e.target;
+    var inputPrice = parseInt(input.getAttribute("data"));
+    if (input.checked) {
+        Price.innerHTML = `${currentTotalPrice + inputPrice}`;
+    }
+    else {
+        Price.innerHTML = `${currentTotalPrice - inputPrice}`;
+    }
+}

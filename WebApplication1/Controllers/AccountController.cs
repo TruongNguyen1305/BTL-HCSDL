@@ -38,6 +38,7 @@ namespace WebApplication1.Controllers
         void connectionString()
         {
             con.ConnectionString = "data source=LAPTOP-J9OI3DHT\\TRUONGCRIS; database=GIAOHANG; integrated security = SSPI;";
+            //con.ConnectionString = "Server=tcp:deliverysystem.database.windows.net,1433;Initial Catalog=Delivery_System;Persist Security Info=False;User ID=Henry;Password=Hungnguyen0304@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         }
         [HttpPost]
         public ActionResult Verify(Account acc)

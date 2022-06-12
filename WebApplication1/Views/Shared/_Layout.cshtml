@@ -1,4 +1,4 @@
-﻿@using WebApplication1.Controllers
+﻿@using WebApplication1.Controllers 
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@
                     @if (Session["Username"] != null)
                     {
                         <li><a href="/Main/CreateOrder">Hello @Session["Username"]</a></li>
-                        <li><a href="/Main/ListOrders">Đơn của tui</a></li>
+                        <li><a href="/Main/ListOrders">Danh sách đơn hàng</a></li>
                         <li><a href="/Account/Logout">Đăng xuất</a></li>
                     }
                     else
@@ -51,5 +51,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Js/validator2.js"></script>
 </body>
 </html>

@@ -70,6 +70,7 @@
         </tbody>
     </table>
 }
+<h2>Tổng tiền: <label id="Price">0</Label> VND</h2>
 <table class="table">
     <thead>
         <tr>
@@ -88,27 +89,27 @@
         </tr>
     </thead>
     <tbody>
-
-        @foreach (var don in (List<DonVanChuyen>)Session["List"])
-        {
-            <tr>
-                <th>@don.MaDon</th>
-                <th>@don.TenNguoiNhan</th>
-                <th>@don.SDTNhan</th>
-                <th>@don.DCNhan</th>
-                <th>@don.KhoangCach</th>
-                <th>@don.KhoiLuong</th>
-                <th>@don.TienThuHo</th>
-                <th>@don.LoaiHang</th>
-                @*<th>@{don.PTGui ? "Gửi tại nhà" : "Đem đến kho"}</th>*@
-                <th>@{var PTNhan = don.PTNhan == true ? "Nhận tại nhà" : "Nhận tại kho";@PTNhan}</th>
-                <th>@don.PhiVanChuyen</th>
-                <th>
-                    @Html.ActionLink("Xóa", "DeleteOrder", "Main", new { MaDon = don.MaDon }, new { @class = "btn btn-danger btn-sm" })
-                </th>
-
-            </tr>
+        @{
+            foreach (var don in (List<DonVanChuyen>)Session["List"])
+            {
+                <tr>
+                    <th>@don.MaDon</th>
+                    <th>@don.TenNguoiNhan</th>
+                    <th>@don.SDTNhan</th>
+                    <th>@don.DCNhan</th>
+                    <th>@don.KhoangCach</th>
+                    <th>@don.KhoiLuong</th>
+                    <th>@don.TienThuHo</th>
+                    <th>@don.LoaiHang</th>
+                    @*<th>@{don.PTGui ? "Gửi tại nhà" : "Đem đến kho"}</th>*@
+                    <th>@{var PTNhan = don.PTNhan == true ? "Nhận tại nhà" : "Nhận tại kho";@PTNhan}</th>
+                    <th>@don.PhiVanChuyen</th>
+                    <th>
+                        @Html.ActionLink("Xóa", "DeleteOrder", "Main", new { MaDon = don.MaDon }, new { @class = "btn btn-danger btn-sm" })
+                    </th>
+                    <th><input type="checkbox" data=@don.PhiVanChuyen onclick="CalculatePrice(event)" /></th>
+                </tr>
+            }
         }
     </tbody>
 </table>
-
